@@ -1,0 +1,52 @@
+# Paths
+input_root:  "NMDID"
+output_root: "results"
+report_path: "{input_root}/dataset.csv"
+
+# Data directory structure
+images_dir:      "{input_root}/images"
+templates_dir:   "{input_root}/templates"
+checkpoints_dir: "{input_root}/checkpoints"
+
+# Projection setup
+drr:
+  parameters:
+    sdd:            1800.0
+    height:         1024
+    width:          1024
+    delx:           0.304
+    x0:             0
+    y0:             0
+    subsample:      1
+  bone_attenuation: 2.5
+  pose:
+    ap:
+      translation:  [0, 1350, 0]
+      rotation_deg: [-35, 0, 0]
+    ml:
+      translation:  [0, 1350, 0]
+      rotation_deg: [55, 0, 0]   # ap + 90
+
+
+# General parameters
+target_shape:
+  2d: [1024, 1024]
+  3d: [128, 256, 256]
+  
+vxm_models:
+  features:
+    '2d': [32, 64, 128, 256]
+    '3d': [32, 64, 128, 256]
+  checkpoint_name: "vxm_{view}.pth"
+
+joint_2d3d_ssm:
+  training:
+    split:       'shape_model'
+    n_modes:     180
+    random_seed: null
+    device:      'cuda'
+  inference:
+    split:            'test' # (use val or test)
+    variance_target:   0.95
+    reg_strength:      10.0e-5
+    device:           'cuda'

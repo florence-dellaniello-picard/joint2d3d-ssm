@@ -1,0 +1,13 @@
+antspyx
+matplotlib
+nibabel
+numpy
+pyvista
+scikit-image
+scipy
+SimpleITK
+torch
+
+git+https://github.com/eigenvivek/DiffDRR.git
+git+https://github.com/adalca/neurite.git@dev
+git+https://github.com/voxelmorph/voxelmorph.git@dev
